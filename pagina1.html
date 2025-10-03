@@ -1,0 +1,214 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Rey León</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0; 
+            padding: 0;
+            background-color: #e45f07;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Efecto de partículas flotantes */
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #3694e0;
+            border-radius: 50%;
+            animation: float 4s infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); opacity: 1; }
+            100% { transform: translate(calc(100vw - 10px), calc(100vh - 10px)); opacity: 0; }
+        }
+
+        /* Efectos para el menú */
+        .menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgb(240, 80, 6);
+            padding: 15px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            gap: 15px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(83, 206, 223, 0.5);
+            border-radius: 10px;
+            animation: gradientAnimation 5s ease infinite;
+        }
+
+        /* Efecto de transición para los enlaces y botones */
+        .menu a, .menu button, .menu select {
+            color: rgb(60, 191, 231);
+            text-decoration: none;
+            padding: 12px 20px;
+            background-color: rgb(138, 18, 18);
+            border: 2px solid transparent;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Efecto de hover */
+        .menu button:hover, .menu a:hover, .menu select:hover {
+            background-color: rgb(197, 23, 23);
+            transform: scale(1.1);
+            border-color: #cecfcf;
+        }
+
+        /* Animación de fondo de la barra de menú */
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Fondo de partículas */
+        #particles-js {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Estilo de las imágenes */
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .image {
+            width: 400px; 
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Título con animación */
+        .title {
+            font-size: 70px;
+            color: #ffdc00;
+            text-shadow: 3px 3px 8px rgba(180, 63, 8, 0.7);
+            font-family: 'Georgia', serif;
+            letter-spacing: 5px;
+            flex: 1;
+            text-align: center;
+            margin-bottom: 40px;
+            margin-top: 80px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Texto de las imágenes */
+        .text {
+            font-size: 18px;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            margin-top: 10px;
+            max-width: 400px;
+            text-align: center;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 5px;
+        }
+
+        /* Contenedor para la disposición de las imágenes y el título */
+        .image-text-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        /* Estilo del contenedor de imágenes a los lados del título */
+        .left, .right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <select onchange="location = this.value;">
+            <option value="">Selecciona una página</option>
+            <option value="pagina1.html">Inicio</option>
+            <option value="pagina2.html">Página 2</option>
+            <option value="pagina3.html">Página 3</option>
+            <option value="pagina4.html">Página 4</option>
+        </select>
+        <button onclick="location.reload()">Reiniciar</button>
+    </div>
+    
+    <h1 class="title">El Rey León</h1>
+    
+    <div class="image-text-container">
+        <!-- Contenedor izquierdo con Scar -->
+        <div class="left">
+            <img src="scarsito.jpg" alt="Imagen de Scar" class="image">
+            <div class="text">Scar, el malvado tío de Simba, busca usurpar el trono con astucia y engaños.</div>
+        </div>
+        
+        <!-- Contenedor derecho con Mufasa -->
+        <div class="right">
+            <img src="papadesimba.jpg" alt="Imagen de Mufasa" class="image">
+            <div class="text">Mufasa, el rey sabio y protector del reino, guía a Simba con amor y responsabilidad.</div>
+        </div>
+    </div>
+
+    <!-- Generación de bolitas flotantes por toda la página -->
+    <script>
+        for (let i = 0; i < 50; i++) {
+            let particle = document.createElement('div');
+            particle.classList.add('particle');
+            document.body.appendChild(particle);
+
+            // Posicionamos las bolitas en posiciones aleatorias
+            particle.style.left = `${Math.random() * 100}vw`;  // Ancho en porcentaje
+            particle.style.top = `${Math.random() * 100}vh`;   // Alto en porcentaje
+
+            // Variamos la velocidad y el tiempo de la animación para que no se muevan todas igual
+            particle.style.animationDuration = `${Math.random() * 4 + 4}s`;  // Tiempo aleatorio
+            particle.style.animationDelay = `${Math.random() * 5}s`;        // Retraso aleatorio
+        }
+    </script>
+</body>
+</html>

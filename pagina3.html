@@ -1,0 +1,199 @@
+
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Rey León 3</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #ff8c00, #ff6f00);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Efectos del menú */
+        .menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgb(240, 80, 6);
+            padding: 15px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            gap: 10px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            animation: gradientAnimation 5s ease infinite;
+        }
+
+        /* Efecto de transición para los enlaces y botones */
+        .menu a, .menu button, .menu select {
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            background-color: rgb(138, 18, 18);
+            border: 2px solid transparent;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Efecto de hover */
+        .menu button:hover, .menu a:hover, .menu select:hover {
+            background-color: rgb(197, 23, 23);
+            transform: scale(1.1);
+            border-color: #ffcc00;
+        }
+
+        /* Estilo del select */
+        .menu select {
+            background-color: rgb(138, 18, 18);
+            border: none;
+            color: white;
+            font-size: 16px;
+        }
+
+        /* Animación de fondo de la barra de menú */
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Animación de entrada de los elementos */
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Contenedor de las imágenes y el texto */
+        .content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            gap: 30px;
+            animation: slideIn 1s ease-out;
+            margin-top: 80px;
+            padding: 20px;
+            width: 90%;
+            box-sizing: border-box;
+        }
+
+        /* Espacio para las imágenes */
+        .image-space {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 35%;
+            animation: slideIn 1.5s ease-out;
+        }
+
+        .image-space img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Efecto hover en las imágenes */
+        .image-space img:hover, 
+        .image-space img:active {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Estilo del texto */
+        .text-content {
+            width: 50%;
+            color: white;
+            text-align: left;
+            animation: slideIn 2s ease-out;
+        }
+
+        h1 {
+            font-size: 60px;
+            font-weight: bold;
+            color: #ffdc00;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 0, 0, 0.8);
+        }
+
+        p {
+            font-size: 20px;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Fondo animado sutil */
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.transparenttextures.com/patterns/black-tile.png');
+            z-index: -1;
+            opacity: 0.5;
+            animation: animateBackground 8s linear infinite;
+        }
+
+        @keyframes animateBackground {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <select onchange="location = this.value;">
+            <option value="">Selecciona una página</option>
+            <option value="pagina1.html">Inicio</option>
+            <option value="pagina2.html">Página 2</option>
+            <option value="pagina3.html">Página 3</option>
+            <option value="pagina4.html">Página 4</option>
+        </select>
+        <button onclick="location.reload()">Reiniciar</button>
+    </div>
+
+    <div class="background-animation"></div>
+
+    <div class="content">
+        <div class="image-space">
+            <img src="pumba.jpg" alt="Pumba">
+            <img src="timonn.jpg" alt="Timón">
+        </div>
+        <div class="text-content">
+            <h1>El Rey León 3</h1>
+            <p>El Rey León 3 nos traslada al pasado, antes de que comenzase la historia de Simba, e incluso mucho más atrás. En esta nueva comedia de aventuras, Timón y Pumba te descubrirán sus orígenes, cuándo se conocieron y cómo ayudaron a Simba a salvar el Serengeti.</p>
+        </div>
+    </div>
+</body>
+</html>
